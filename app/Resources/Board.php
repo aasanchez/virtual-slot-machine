@@ -42,4 +42,8 @@ class Board
         return $output;
     }
 
+    public function set_board($sequence){
+        $this->board = $sequence;
+    }
+
 }
