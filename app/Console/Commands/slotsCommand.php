@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Play;
+use App\Resources\Board;
+use App\Resources\PayLines;
 use Illuminate\Console\Command;
 
 
@@ -16,7 +18,9 @@ class SlotsCommand extends Command
     public function handle()
     {
         $output = new Play();
-        $output->board = ['J', 'J', 'J', 'Q', 'K', 'cat', 'J', 'Q', 'monkey', 'bird', 'bird', 'bird', 'J', 'Q', 'A'];
+        $board = new Board;
+        $output->board = $board->get_board();
+
         $output->paylines = [['0 3 6 9 12' => 3], ['0 3 6 9 12' => 3]];
         $output->betAmount = 100;
         $output->total_win = 40;
