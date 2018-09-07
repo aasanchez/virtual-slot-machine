@@ -2,7 +2,6 @@
 
 namespace App;
 
-
 class Play
 {
     /**
@@ -10,7 +9,6 @@ class Play
      *
      * @var array
      */
-
     public $board;
 
     public $play_lines;
@@ -19,21 +17,23 @@ class Play
 
     public $total_win;
 
-    public function setPlayLines($play_lines){
-        $this->play_lines =$play_lines;
+    public function setPlayLines($play_lines)
+    {
+        $this->play_lines = $play_lines;
     }
 
-    public function setBoard($board){
+    public function setBoard($board)
+    {
         $this->board = $board;
     }
 
-    public function setBetAmount($bet_amount){
+    public function setBetAmount($bet_amount)
+    {
         $this->bet_amount = $bet_amount;
     }
 
-    public function setTotalWin($total_win){
+    public function setTotalWin($total_win)
+    {
         $this->total_win = $total_win;
     }
-
-
 }

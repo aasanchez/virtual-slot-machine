@@ -96,7 +96,7 @@ class PayLines
                     }
                 }
             }
-            if($count >= 3){
+            if ($count >= 3) {
                 return [implode(', ', $line) => $count];
             }
         }, $lines);
@@ -108,5 +108,4 @@ class PayLines
     {
         return $this->winningLines;
     }
-
 }
