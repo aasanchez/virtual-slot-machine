@@ -20,12 +20,15 @@ class SlotsCommand extends Command
         $output = new Play();
         $board = new Board;
         $board->set_board(['J', 'J', 'J', 'Q', 'K', 'cat', 'J', 'Q', 'monkey', 'bird', 'bird', 'bird', 'J', 'Q', 'A']);
+        //$board->set_board(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O']);
         $output->board = $board->get_board();
 
+        $paylines = new PayLines($output->board);
+        //$this->info(json_encode($paylines->getLines()));
         $output->paylines = [['0 3 6 9 12' => 3], ['0 3 6 9 12' => 3]];
         $output->betAmount = 100;
         $output->total_win = 40;
 
-        $this->info($output->toJson(JSON_PRETTY_PRINT));
+        //$this->info($output->toJson(JSON_PRETTY_PRINT));
     }
 }
