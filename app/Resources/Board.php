@@ -2,15 +2,13 @@
 
 namespace App\Resources;
 
-
 class Board
 {
     protected $board;
     protected $SYMBOLS = ['9', '10', 'J', 'Q', 'K', 'A', 'cat', 'dog', 'monkey', 'bird'];
 
-    function __construct()
+    public function __construct()
     {
-
         $this->board = $this->newBoard();
     }
 
@@ -19,6 +17,7 @@ class Board
         foreach (range(0, 14) as $number) {
             $this->board[] = $this->get_symbol();
         }
+
         return $this->board;
     }
 
@@ -39,11 +38,12 @@ class Board
             [$this->board[1], $this->board[4], $this->board[7], $this->board[10], $this->board[13]],
             [$this->board[2], $this->board[5], $this->board[8], $this->board[11], $this->board[14]],
         ];
+
         return $output;
     }
 
-    public function set_board($sequence){
+    public function set_board($sequence)
+    {
         $this->board = $sequence;
     }
-
 }

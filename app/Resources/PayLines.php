@@ -2,7 +2,6 @@
 
 namespace App\Resources;
 
-
 class PayLines
 {
     protected $PAY_LINES = [
@@ -10,11 +9,11 @@ class PayLines
         [1, 4, 7, 10, 13],
         [2, 5, 8, 11, 14],
         [0, 4, 8, 10, 12],
-        [2, 4, 6, 10, 14]
+        [2, 4, 6, 10, 14],
     ];
 
     protected $GRID = [
-        0, 3, 6, 9, 12, 1, 4, 7, 10, 13, 2, 5, 8, 11, 14
+        0, 3, 6, 9, 12, 1, 4, 7, 10, 13, 2, 5, 8, 11, 14,
     ];
 
     private $payLines;
@@ -23,7 +22,7 @@ class PayLines
     private $sequence;
     private $winningLines;
 
-    function __construct($sequence)
+    public function __construct($sequence)
     {
         $this->sequence = $sequence;
         $this->line = $this->order($this->sequence);
@@ -37,6 +36,7 @@ class PayLines
             $line[$value] = $sequence[$key];
         }
         ksort($line);
+
         return $line;
     }
 
@@ -48,6 +48,7 @@ class PayLines
                 $output[$payLineIndex][$lineIndex] = $line[$value];
             }
         }
+
         return $output;
     }
 
@@ -55,6 +56,7 @@ class PayLines
     {
         $possibleLines = $this->getPossibleLines($lines);
         $winners = $this->checkWinning($possibleLines);
+
         return $winners;
     }
 
@@ -63,23 +65,26 @@ class PayLines
         $possibleLines = array_map(function ($line) {
             if (max(array_count_values($line)) < 3) {
                 $line = null;
-            };
+            }
+
             return $line;
         }, $lines);
+
         return array_values(array_filter($possibleLines));
     }
 
-    private function checkWinning($lines){
+    private function checkWinning($lines)
+    {
         $winners = array_map(function ($line) {
             $symbol = array_keys(array_count_values($line))[0];
             $previousIndex = null;
             $count = 0;
-            foreach ($line as $index => $value){
-                if($value == $symbol){
-                    if($previousIndex === null ){
+            foreach ($line as $index => $value) {
+                if ($value == $symbol) {
+                    if ($previousIndex === null) {
                         $previousIndex = $index;
                         $count = 1;
-                    }else {
+                    } else {
                         //echo $previousIndex."\n";
                         if ($previousIndex + 1 == $index) {
                             $count++;
@@ -90,12 +95,15 @@ class PayLines
                     }
                 }
             }
-            return [implode(', ',$line) => $count];
+
+            return [implode(', ', $line) => $count];
         }, $lines);
+
         return $winners;
     }
 
-    public function getWinners(){
+    public function getWinners()
+    {
         return $this->winningLines;
     }
 }
