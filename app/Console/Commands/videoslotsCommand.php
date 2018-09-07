@@ -8,11 +8,11 @@ use App\Resources\PayLines;
 use App\Resources\Winning;
 use Illuminate\Console\Command;
 
-class slotsCommand extends Command
+class videoslotsCommand extends Command
 {
-    protected $signature = 'slot';
+    protected $signature = 'videoslots';
 
-    protected $description = 'run slot command';
+    protected $description = 'run videoslots test';
 
     public function handle()
     {

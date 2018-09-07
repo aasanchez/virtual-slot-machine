@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\slotsCommand::class,
+        Commands\videoslotsCommand::class,
     ];
 
     /**
