@@ -17,17 +17,18 @@ class PayLines
         0, 3, 6, 9, 12, 1, 4, 7, 10, 13, 2, 5, 8, 11, 14
     ];
 
-    protected $payLines;
+    private $payLines;
 
-    protected $line;
-    protected $sequence;
+    private $line;
+    private $sequence;
+    private $winningLines;
 
     function __construct($sequence)
     {
         $this->sequence = $sequence;
         $this->line = $this->order($this->sequence);
-        //print_r($this->line);
-        $this->getLines($this->PAY_LINES, $this->line);
+        $this->payLines = $this->getLines($this->PAY_LINES, $this->line);
+        $this->winningLines = $this->getWinningLines($this->payLines);
     }
 
     public function order($sequence)
@@ -41,18 +42,45 @@ class PayLines
 
     private function getLines($payLines, $line)
     {
+        $output = [];
         foreach ($payLines as $payLineIndex => $payLineValue) {
-            echo $payLineIndex . "\n";
             foreach ($payLineValue as $lineIndex => $value) {
-                echo "$lineIndex => $value ==> $line[$value]\n";
-
+                $output[$payLineIndex][$lineIndex] = $line[$value];
             }
-            echo "\n\n";
         }
+        return $output;
     }
 
-    private function checkLine()
+    private function getWinningLines($lines)
     {
+        $possibleLines = $this->getPossibleLines($lines);
+        $winners = $this->checkWinning($possibleLines);
+        print_r($winners);
+        return $winners;
+    }
 
+    private function getPossibleLines($lines)
+    {
+        $possibleLines = array_map(function ($line) {
+            if (max(array_count_values($line)) < 3) {
+                $line = null;
+            };
+            return $line;
+        }, $lines);
+        return array_values(array_filter($possibleLines));
+    }
+
+    private function checkWinning($lines){
+        $winners = array_map(function ($line) {
+            $symbol = array_keys(array_count_values($line))[0];
+            $previous = null;
+            $count = 0;
+            foreach ($line as $value){
+                if($count == 0){
+                    $previous = $value;
+                    $count++;
+                }
+            }
+        }, $lines);
     }
 }
