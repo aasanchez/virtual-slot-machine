@@ -18,7 +18,8 @@ class videoslotsCommand extends Command
     {
         $play = new Play();
         $board = new Board();
-        $BET_AMOUNT = 100;
+        $BET = 1;
+        $bet_amount = $BET * 100;
 
         //$board->set_board(['J', 'J', 'J', 'Q', 'K', 'cat', 'J', 'Q', 'monkey', 'bird', 'bird', 'bird', 'J', 'Q', 'A']);
         $play->setBoard($board->get_board());
@@ -26,9 +27,9 @@ class videoslotsCommand extends Command
 
         $play->setPlayLines($pay_lines->getWinners());
 
-        $play->setBetAmount($BET_AMOUNT);
+        $play->setBetAmount($bet_amount);
 
-        $total_win = new Winning($pay_lines->getWinners(), $BET_AMOUNT);
+        $total_win = new Winning($pay_lines->getWinners(), $bet_amount);
         $play->setTotalWin($total_win->getTotal());
 
         $this->info(json_encode($play, JSON_PRETTY_PRINT));
