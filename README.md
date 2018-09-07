@@ -65,5 +65,26 @@ scope of this test.
 
 ## HOW TO USE
 
+### In local
+
+Using the local resources
 ![alt text](docs/tty.gif "How to use")
 
+
+### Docker
+
+####  Install dependencies
+
+We need to run composer install to pull in all of the libraries that make up Lumen — we can use the composer/composer image from the docker hub to handle this for us.
+
+We’ll create a throw-away container by executing the following command.
+
+``` $ docker run --rm -v $(pwd):/app composer/composer install ```
+
+#### Starting the services
+
+``` docker-compose up ```
+
+#### Using our new command
+
+``` docker-compose exec app php artisan videoslots ``` 
