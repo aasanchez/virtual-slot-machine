@@ -24,11 +24,12 @@ class SlotsCommand extends Command
         $output->board = $board->get_board();
 
         $paylines = new PayLines($output->board);
+
         //$this->info(json_encode($paylines->getLines()));
-        $output->paylines = [['0 3 6 9 12' => 3], ['0 3 6 9 12' => 3]];
+        $output->paylines = $paylines->getWinners();
         $output->betAmount = 100;
         $output->total_win = 40;
 
-        //$this->info($output->toJson(JSON_PRETTY_PRINT));
+        $this->info($output->toJson(JSON_PRETTY_PRINT));
     }
 }

@@ -55,7 +55,6 @@ class PayLines
     {
         $possibleLines = $this->getPossibleLines($lines);
         $winners = $this->checkWinning($possibleLines);
-        print_r($winners);
         return $winners;
     }
 
@@ -73,14 +72,30 @@ class PayLines
     private function checkWinning($lines){
         $winners = array_map(function ($line) {
             $symbol = array_keys(array_count_values($line))[0];
-            $previous = null;
+            $previousIndex = null;
             $count = 0;
-            foreach ($line as $value){
-                if($count == 0){
-                    $previous = $value;
-                    $count++;
+            foreach ($line as $index => $value){
+                if($value == $symbol){
+                    if($previousIndex === null ){
+                        $previousIndex = $index;
+                        $count = 1;
+                    }else {
+                        //echo $previousIndex."\n";
+                        if ($previousIndex + 1 == $index) {
+                            $count++;
+                        } else {
+                            $count = 0;
+                        }
+                        $previousIndex = $index;
+                    }
                 }
             }
+            return [implode(', ',$line) => $count];
         }, $lines);
+        return $winners;
+    }
+
+    public function getWinners(){
+        return $this->winningLines;
     }
 }
