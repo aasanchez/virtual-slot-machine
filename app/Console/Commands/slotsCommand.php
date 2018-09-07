@@ -18,7 +18,7 @@ class slotsCommand extends Command
     {
         $play = new Play();
         $board = new Board();
-        $BET_AMOUNT= 100;
+        $BET_AMOUNT = 100;
 
         //$board->set_board(['J', 'J', 'J', 'Q', 'K', 'cat', 'J', 'Q', 'monkey', 'bird', 'bird', 'bird', 'J', 'Q', 'A']);
         $play->setBoard($board->get_board());
@@ -28,9 +28,9 @@ class slotsCommand extends Command
 
         $play->setBetAmount($BET_AMOUNT);
 
-        $total_win = new Winning($pay_lines->getWinners(),$BET_AMOUNT);
+        $total_win = new Winning($pay_lines->getWinners(), $BET_AMOUNT);
         $play->setTotalWin($total_win->getTotal());
 
-        $this->info(json_encode($play,JSON_PRETTY_PRINT));
+        $this->info(json_encode($play, JSON_PRETTY_PRINT));
     }
 }

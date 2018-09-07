@@ -2,7 +2,6 @@
 
 namespace App\Resources;
 
-
 class Winning
 {
     private $WINNING_RULES = [
@@ -31,6 +30,7 @@ class Winning
             $occurrence = array_values($line)[0];
             $amount = $amount + ($this->bet * $this->WINNING_RULES[$occurrence]);
         }
+
         return $amount;
     }
 
