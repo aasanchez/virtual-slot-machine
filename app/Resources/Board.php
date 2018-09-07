@@ -4,8 +4,8 @@ namespace App\Resources;
 
 class Board
 {
-    protected $board;
-    protected $SYMBOLS = ['9', '10', 'J', 'Q', 'K', 'A', 'cat', 'dog', 'monkey', 'bird'];
+    private $board;
+    private $SYMBOLS = ['9', '10', 'J', 'Q', 'K', 'A', 'cat', 'dog', 'monkey', 'bird'];
 
     public function __construct()
     {
@@ -31,6 +31,11 @@ class Board
         return $this->board;
     }
 
+    public function set_board($sequence)
+    {
+        $this->board = $sequence;
+    }
+
     public function get_display()
     {
         $output = [
@@ -42,8 +47,5 @@ class Board
         return $output;
     }
 
-    public function set_board($sequence)
-    {
-        $this->board = $sequence;
-    }
+
 }
